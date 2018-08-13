@@ -3,12 +3,19 @@ import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
 import PromiseThrottle from 'promise-throttle';
 
+import Login from './components/Login';
+import NowPlaying from './components/NowPlaying';
+import Playlists from './components/Playlists';
+
 const spotifyApi = new SpotifyWebApi();
 const promiseThrottle = new PromiseThrottle({ requestsPerSecond: 5 });
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.getNowPlaying = this.getNowPlaying.bind(this);
+
     const params = this.getHashParams();
     const token = params.access_token;
     if (token) {
@@ -42,18 +49,25 @@ class App extends Component {
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState()
       .then((response) => {
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[0].url
-          }
-        });
+        if (response != "") {
+          this.setState({
+            nowPlaying: {
+              name: response.item.name,
+              albumArt: response.item.album.images[0].url
+            }
+          });
+        } else {
+          console.log("Failed to get current playback state.");
+        }
       })
   }
 
   getMyPlaylists() {
-      this.fetchUserFollowedPlaylists(this.state.userId).then((playlists) => {
-        console.log(playlists);
+      this.fetchUserFollowedPlaylists(this.state.userId).then((playlistList) => {
+        this.setState({
+          playlists: playlistList
+        });
+        console.log(playlistList);
       });
   }
 
@@ -132,24 +146,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <a href="http://localhost:8888/login">Login to Spotify</a>
-        <div>
-          Now Playing: {this.state.nowPlaying.name}
-        </div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
-        </div>
-        <div>
-          Artist Popularity: {this.state.artistPop}
-        </div>
-        { this.state.loggedIn &&
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
-        }
+        <Login loggedIn={this.state.loggedIn} token={this.state.userId}> </Login>
+        <NowPlaying loggedIn={this.state.loggedIn} nowPlaying={this.state.nowPlaying} playingClick={this.getNowPlaying} />
         { this.state.loggedIn &&
           <button onClick={() => this.getMyPlaylists()}>Get Playlists</button>
         }
+
+        { this.state.playlists && this.state.playlists.length &&
+          <Playlists returnedPlaylists={this.state.playlists} />
+        }
+
         { this.state.loggedIn &&
           <button onClick={() => this.fetchFollowedArtists()}>Get Followed Artists</button>
         }
