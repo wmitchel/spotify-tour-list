@@ -1,0 +1,20 @@
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+table th,
+table td {
+  border: 1px solid #d5d6d8;
+  padding: 13px 10px 11px;
+  text-align: left;
+  user-select: none;
+}
+
+table td img {
+  max-width: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
