@@ -49,7 +49,7 @@ class App extends Component {
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState()
       .then((response) => {
-        if (response != "") {
+        if (response !== "") {
           this.setState({
             nowPlaying: {
               name: response.item.name,

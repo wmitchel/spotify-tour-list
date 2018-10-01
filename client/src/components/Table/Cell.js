@@ -1,29 +1,23 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
 export default class Cell extends PureComponent {
-    static propTypes = {
-        value: PropTypes.any,
-        isImage: PropTypes.bool.isRequired,
-    };
-    
-  render() {
+  static propTypes = {
+    value: PropTypes.any,
+    isImage: PropTypes.bool.isRequired
+  };
 
+  render() {
     const { value, isImage } = this.props;
 
     if (isImage) {
       return (
         <td>
-          <img src={value}></img>
+          <img src={value} alt="Logo" />
         </td>
       );
     } else {
-      return (
-        <td>
-          {value}
-        </td>
-      );
+      return <td>{value}</td>;
     }
   }
 }

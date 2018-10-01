@@ -15,7 +15,7 @@ class NowPlaying extends React.Component {
                             Now Playing: {this.props.nowPlaying.name} <br/> Artist Popularity: {this.props.artistPop}
                         </div>
                         <div>
-                            <img src={this.props.nowPlaying.albumArt} style={{ height: 150 }} />
+                            <img src={this.props.nowPlaying.albumArt} style={{ height: 150 }} alt="Now playing album art." />
                         </div>
                     </div>
                 }

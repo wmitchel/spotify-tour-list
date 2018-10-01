@@ -8,10 +8,6 @@ const columns = [
 ];
 
 class Playlists extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     getIconImage = (playlist) => {
         if (playlist.images[2])
             return playlist.images[2].url;
