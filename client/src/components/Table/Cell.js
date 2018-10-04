@@ -13,7 +13,7 @@ export default class Cell extends PureComponent {
     if (isImage) {
       return (
         <td>
-          <img src={value} alt="Logo" />
+          <img src={value} />
         </td>
       );
     } else {
