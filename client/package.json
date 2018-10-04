@@ -7,7 +7,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "2.0.2",
     "spotify-web-api-js": "^0.24.0"
   },
   "scripts": {
@@ -19,5 +19,11 @@
   "devDependencies": {
     "eslint-plugin-prettier": "^3.0.0",
     "prettier": "1.14.3"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
