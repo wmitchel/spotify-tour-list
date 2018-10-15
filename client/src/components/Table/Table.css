@@ -1,9 +1,9 @@
 table {
-    border-spacing: 0;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
 table th,
 table td {
   border: 1px solid #d5d6d8;

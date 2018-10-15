@@ -7,7 +7,7 @@ export default class HeaderRow extends PureComponent {
   };
 
   renderHeaderCell = column => {
-    return <th>{column.name}</th>;
+    return <th key={column.key}>{column.name}</th>;
   };
 
   render() {

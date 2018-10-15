@@ -13,7 +13,7 @@ export class Table extends Component {
   };
 
   renderRow = row => {
-    return <Row columns={this.props.columns} row={row} />;
+    return <Row columns={this.props.columns} row={row} key={row.id} />;
   };
 
   render() {

@@ -9,7 +9,13 @@ export default class Row extends PureComponent {
   };
 
   renderCell = column => {
-    return <Cell isImage={column.isImage} value={this.props.row[column.key]} />;
+    return (
+      <Cell
+        isImage={column.isImage}
+        key={column.key}
+        value={this.props.row[column.key]}
+      />
+    );
   };
 
   render() {
